@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Email"
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="email_entry"  
+                   Text="Username" 
+                   HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Password"
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="password_entry" 
+                   Placeholder="Password"
+                   HorizontalOptions="CenterAndExpand"
+                   IsPassword="True"/>
+            <Button x:Name="login_button"
+                    Text="Login"
+                    WidthRequest="150" 
+                    HorizontalOptions="Center"
+                    Clicked="Login"/>
+            <Button x:Name="goToRegister_button"
+                    Text="Register"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"
+                    Clicked="GoToRegister"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

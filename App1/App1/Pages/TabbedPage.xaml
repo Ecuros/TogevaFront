@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:App1.ViewModels"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="App1.Pages.TabbedPage1"            
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             windows:TabbedPage.HeaderIconsEnabled="true"
+             NavigationPage.HasNavigationBar="false">
+    
+  <!--Pages can be added as references or inline-->
+    <ContentPage x:Name ="announcesPage" Title="Announces">
+        <StackLayout Orientation="Vertical"                    
+                     HorizontalOptions="CenterAndExpand" 
+                     VerticalOptions="CenterAndExpand">
+            <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="CenterAndExpand">
+                <Entry x:Name="location_filter" 
+                   BackgroundColor="Orange" 
+                   Placeholder="location"/>
+                <Button x:Name="filter_button"
+                        BorderColor="Orange" 
+                        Text="Filter"
+                        Clicked="filter_button_Clicked"/>
+            </StackLayout>
+            <CollectionView ItemsSource="{Binding Announces}"
+                            SelectionMode="Single"
+                            SelectionChanged="CollectionView_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate >
+                        <Grid Padding=" 20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="image" BackgroundColor="Red"/>
+                            <Label Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding description}"/>
+                            <Label Grid.Column="0" Grid.Row="1"  Text="{Binding location}" BackgroundColor="Pink"/>
+                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding UserId}" BackgroundColor="Green"/>
+                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding sport}" BackgroundColor="Yellow"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="New announce" IconImageSource="add.png">
+        <ContentPage.Content>
+            <StackLayout Margin="20"
+                 VerticalOptions="Center" >
+                <Label Text="Sport" HorizontalOptions="Center"/>
+                <Entry x:Name="sport_entry"/>
+                <Label Text="Lokalizacja" HorizontalOptions="Center"/>
+                <Entry x:Name="location_entry"/>
+                <Label Text="Description" HorizontalOptions="Center"/>
+                <Entry x:Name="description_entry" HorizontalOptions="Center"/>
+                <Button Text="Dodaj ogloszenie"
+                    Clicked="AddAnnounce"
+                    BackgroundColor="Orange"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage x:Name="accountPage" Title="My account" IconImageSource="account.png">
+        <StackLayout Margin="20"
+                 VerticalOptions="CenterAndExpand"                    
+                 HorizontalOptions="CenterAndExpand">
+            <Button Text="My announces"
+                    Clicked="Button_Clicked"/>
+        </StackLayout>
+        
+    </ContentPage>
+</TabbedPage>
