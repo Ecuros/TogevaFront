@@ -18,3 +18,5 @@ E:\Inzynierka\App1\App1\App1\obj\Debug\netstandard2.0\Pages\RegisterPage.xaml.g.
 E:\Inzynierka\App1\App1\App1\obj\Debug\netstandard2.0\Pages\TabbedPage.xaml.g.cs
 E:\Inzynierka\App1\App1\App1\obj\Debug\netstandard2.0\Pages\Test.xaml.g.cs
 E:\Inzynierka\App1\App1\App1\obj\Debug\netstandard2.0\Pages\AnnouncesPage.xaml.g.cs
+E:\Inzynierka\App1\App1\App1\obj\Debug\netstandard2.0\Pages\DetailsPage.xaml.g.cs
+E:\Inzynierka\App1\App1\App1\obj\Debug\netstandard2.0\Pages\AccountDetailsPage.xaml.g.cs

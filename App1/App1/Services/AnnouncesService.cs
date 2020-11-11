@@ -16,21 +16,19 @@ namespace App1.Services
     public class AnnouncesService
     {
 
-        public ObservableCollection<Announce> announces = new ObservableCollection<Announce>();
-        public AnnouncesService()
-        {
-            ObservableCollection<Announce> announces = new ObservableCollection<Announce>();
-        }
         public async System.Threading.Tasks.Task<ObservableCollection<Announce>> GetAnnouncesAsync ()
         {
-            ObservableCollection<Announce> Announces = new ObservableCollection<Announce>();
+            ObservableCollection<Announce> announces = new ObservableCollection<Announce>();
             using (var httpClientHandler = new HttpClientHandler())
             {
                 httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
                 HttpClient client = new HttpClient(httpClientHandler);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SecureStorage.GetAsync("key").Result);
-                var url = "http://10.0.2.2:51713/api/announces";
-                var response = await client.GetAsync(url);
+                User user = new User("", "", SecureStorage.GetAsync("user").Result);
+                var json = JsonConvert.SerializeObject(user);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = "http://10.0.2.2:51713/api/announces/get";
+                var response = await client.PostAsync(url,data);
                 var result = JsonConvert.DeserializeObject<ObservableCollection<Announce>>(response.Content.ReadAsStringAsync().Result);
                 announces = result;
                 return announces;
@@ -38,15 +36,19 @@ namespace App1.Services
             
         }
 
-        internal async Task<ObservableCollection<Announce>> GetFilteredAnnouncesAsync(string location)
+        internal async Task<ObservableCollection<Announce>> GetFilteredAnnouncesAsync(string location, string sport, DateTime date)
         {
+            ObservableCollection<Announce> announces = new ObservableCollection<Announce>();
             using (var httpClientHandler = new HttpClientHandler())
             {
                 httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
                 HttpClient client = new HttpClient(httpClientHandler);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SecureStorage.GetAsync("key").Result);
-                var url = "http://10.0.2.2:51713/api/announces/"+location;
-                var response = await client.GetAsync(url);
+                Announce announce = new Announce("", location, "", sport, date);
+                var json = JsonConvert.SerializeObject(announce);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = "http://10.0.2.2:51713/api/announces/filter";
+                var response = await client.PostAsync(url,data);
                 var result = JsonConvert.DeserializeObject<ObservableCollection<Announce>>(response.Content.ReadAsStringAsync().Result);
                 if (response.IsSuccessStatusCode)
                 {
@@ -57,8 +59,35 @@ namespace App1.Services
             }
         }
 
+        internal async Task<ObservableCollection<Announce>> deleteAnnounce(Announce announce)
+        {
+            ObservableCollection<Announce> announces = new ObservableCollection<Announce>();
+            using (var httpClientHandler = new HttpClientHandler())
+            {
+                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                HttpClient client = new HttpClient(httpClientHandler);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SecureStorage.GetAsync("key").Result);
+                var url = "http://10.0.2.2:51713/api/announces/delete";
+                //User user = new User("", "", SecureStorage.GetAsync("user").Result);
+                var json = JsonConvert.SerializeObject(announce);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(url, data);
+                var result = JsonConvert.DeserializeObject<ObservableCollection<Announce>>(response.Content.ReadAsStringAsync().Result);
+                if (response.IsSuccessStatusCode)
+                {
+                    announces = JsonConvert.DeserializeObject<ObservableCollection<Announce>>(response.Content.ReadAsStringAsync().Result);
+                    return announces;
+                    //Console.WriteLine("usunieted");
+               
+                }
+                return null;
+             
+            }
+        }
+
         internal async Task<IEnumerable<Announce>> GetUserAnnouncesAsync()
         {
+            ObservableCollection<Announce> announces = new ObservableCollection<Announce>();
             using (var httpClientHandler = new HttpClientHandler())
             {
                 httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Pages.DetailsPage">
+
+    <StackLayout VerticalOptions="CenterAndExpand" 
+                 HorizontalOptions="CenterAndExpand">
+        <Label Text="{Binding description}"/>
+        <Label Text="{Binding location}"/>
+        <Label Text="{Binding date}"/>
+        <Button x:Name="deleteButton" Text="Delete announce"
+                Clicked="Button_ClickedAsync"/>
+        <Button x:Name="editButton" Text="Edit announce"/>
+        <Button x:Name="sendMessageButton" Text="Send message"/>
+    </StackLayout>
+
+</ContentPage>

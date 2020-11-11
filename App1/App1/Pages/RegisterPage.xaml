@@ -1,21 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.Pages.RegisterPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="email_entry"
-                   />
+             x:Class="App1.Pages.RegisterPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             NavigationPage.HasNavigationBar="false"
+             x:Name="page">
+    <StackLayout VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand">
+           
+            <Label Text="First name"
+                   HorizontalOptions="Center"/>
+            <Entry x:Name="firstName_entry"/>
+            <Label Text="Email"
+                   HorizontalOptions="Center"/>
+            <Entry x:Name="email_entry"/>
+            <Label Text="Password"
+                   HorizontalOptions="Center"/>
             <Entry x:Name="password_entry"
                    IsPassword="True"/>
-            <Button 
-                Text="Create account"
-                Clicked="Register"/>
-
-
+            <Button Text="Create account"
+                    Clicked="Register"
+                    BorderColor="Orange"
+                    BorderWidth="1"
+                    android:Button.UseDefaultShadow="true"/>
         </StackLayout>
-    </ContentPage.Content>
 </ContentPage>

@@ -467,3 +467,5 @@ E:\Inzynierka\App1\App1\App1.Android\obj\Debug\90\android\assets\Newtonsoft.Json
 E:\Inzynierka\App1\App1\App1.Android\obj\Debug\90\res\drawable\add.png
 E:\Inzynierka\App1\App1\App1.Android\obj\Debug\90\res\drawable\add2.png
 E:\Inzynierka\App1\App1\App1.Android\obj\Debug\90\res\drawable\account.png
+E:\Inzynierka\App1\App1\App1.Android\obj\Debug\90\res\drawable\announces.png
+E:\Inzynierka\App1\App1\App1.Android\obj\Debug\90\res\drawable\announces2.png

@@ -24,7 +24,7 @@ namespace App1.Pages
 
         private async void Register(object sender, EventArgs e)
         {
-            User user = new User(email_entry.Text, password_entry.Text);
+            User user = new User(email_entry.Text, password_entry.Text,firstName:firstName_entry.Text);
             if(await service.RegisterUserAsync(user))
             {
                 await Navigation.PushAsync(new LoginPage());

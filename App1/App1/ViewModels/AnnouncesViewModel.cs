@@ -42,25 +42,32 @@ namespace App1.ViewModels
             service = new AnnouncesService();
             Announces = new ObservableCollection<Announce>();
             userAnnounces = new ObservableCollection<Announce>();
-            getUserAnnounces();
+            GetUserAnnounces();
             getAnnounces();
             selectedAnnounce = Announces.FirstOrDefault();
            
         }
 
-        public async Task addAnnounce(Announce announce)
+        public async Task<bool> addAnnounce(Announce announce)
         {
-            Announces.Add(await service.PostAnnounceAsync(announce));            
+            Announce result = await service.PostAnnounceAsync(announce);
+            if (result != null)
+            {
+                userAnnounces.Add(result);
+                return true;
+            }
+            return false;
         }
        
         public async void getAnnounces()
         {
-            foreach (Announce announce in await service.GetAnnouncesAsync())
+            Announces = await service.GetAnnouncesAsync();
+            /*foreach (Announce announce in await service.GetAnnouncesAsync())
             {
                 Announces.Add(announce);
-            }            
+            }        */    
         }
-        public async void getUserAnnounces()
+        public async void GetUserAnnounces()
         {
             foreach (Announce announce in await service.GetUserAnnouncesAsync())
             {
@@ -68,9 +75,15 @@ namespace App1.ViewModels
             }
         }
 
-        public async Task filterAnnounces(string location)
+        public async Task filterAnnounces(string location,string sport,DateTime date)
         {
-            Announces = await service.GetFilteredAnnouncesAsync(location);
+            Announces = await service.GetFilteredAnnouncesAsync(location,sport,date);
+        }
+
+        public async Task<bool> deleteAnnounce (Announce announce)
+        {
+            userAnnounces = await service.deleteAnnounce(announce);
+            return true;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

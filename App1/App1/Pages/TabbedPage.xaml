@@ -9,18 +9,27 @@
              NavigationPage.HasNavigationBar="false">
     
   <!--Pages can be added as references or inline-->
-    <ContentPage x:Name ="announcesPage" Title="Announces">
+    <ContentPage x:Name ="announcesPage" Title="Announces" IconImageSource="announces.png">
         <StackLayout Orientation="Vertical"                    
                      HorizontalOptions="CenterAndExpand" 
-                     VerticalOptions="CenterAndExpand">
+                     VerticalOptions="CenterAndExpand"                    
+                     >
             <StackLayout Orientation="Horizontal" 
-                     HorizontalOptions="CenterAndExpand">
-                <Entry x:Name="location_filter" 
-                   BackgroundColor="Orange" 
-                   Placeholder="location"/>
+                     HorizontalOptions="CenterAndExpand"
+                       >
+                <Entry x:Name="location_filter"                        
+                        Placeholder="location"
+                       HorizontalOptions="Center"/>
+                <Entry x:Name="sport_filter"
+                        Placeholder="sport"
+                       HorizontalOptions="Center"/>
+                <DatePicker x:Name="date_filter"/>
                 <Button x:Name="filter_button"
                         BorderColor="Orange" 
+                        BorderWidth="1"
                         Text="Filter"
+                        HeightRequest="40"
+                        android:Button.UseDefaultShadow="True"
                         Clicked="filter_button_Clicked"/>
             </StackLayout>
             <CollectionView ItemsSource="{Binding Announces}"
@@ -28,22 +37,21 @@
                             SelectionChanged="CollectionView_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate >
-                        <Grid Padding=" 20">
+                        <Grid Padding="0,10,0,5"  RowSpacing="0" ColumnSpacing="2" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="80" />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width ="*" />
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="image" BackgroundColor="Red"/>
-                            <Label Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding description}"/>
-                            <Label Grid.Column="0" Grid.Row="1"  Text="{Binding location}" BackgroundColor="Pink"/>
-                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding UserId}" BackgroundColor="Green"/>
-                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding sport}" BackgroundColor="Yellow"/>
+                            <Label Grid.Column="0" Text="image" BackgroundColor="White"/>
+                            <Label Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding description}" Padding="5" MaxLines="5" BackgroundColor="White"/>
+                            <Label Grid.Column="0" Grid.Row="1"  Text="{Binding location}" MaxLines="2" BackgroundColor="White"/>
+                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding date}" BackgroundColor="White"/>
+                            <Label Grid.Column="2" Grid.Row="1" Text="{Binding sport}" MaxLines="2" BackgroundColor="White"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -60,8 +68,9 @@
                 <Label Text="Lokalizacja" HorizontalOptions="Center"/>
                 <Entry x:Name="location_entry"/>
                 <Label Text="Description" HorizontalOptions="Center"/>
-                <Entry x:Name="description_entry" HorizontalOptions="Center"/>
-                <Button Text="Dodaj ogloszenie"
+                <Entry x:Name="description_entry" />
+                <DatePicker x:Name="date_picker"/>
+                <Button Text="Add announce"
                     Clicked="AddAnnounce"
                     BackgroundColor="Orange"/>
             </StackLayout>
@@ -74,6 +83,8 @@
                  HorizontalOptions="CenterAndExpand">
             <Button Text="My announces"
                     Clicked="Button_Clicked"/>
+            <Button x:Name="settingsButton" Text="Settings"
+                    Clicked="SettingsButton_Clicked"/>
         </StackLayout>
         
     </ContentPage>

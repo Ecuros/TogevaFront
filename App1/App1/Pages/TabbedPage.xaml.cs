@@ -22,15 +22,23 @@ namespace App1.Pages
             viewModel = new AnnouncesViewModel();
             announcesPage.BindingContext = viewModel;
             accountPage.BindingContext = viewModel;
+            date_picker.MinimumDate = DateTime.Today;
+           
             
         }
 
         private async void AddAnnounce(object sender, EventArgs e)
         {
             string UserId = await SecureStorage.GetAsync("user");
-            Announce announce = new Announce(description_entry.Text, location_entry.Text, UserId,sport_entry.Text);           
-            await viewModel.addAnnounce(announce);
-            
+            Announce announce = new Announce(description_entry.Text, location_entry.Text, UserId,sport_entry.Text, date_picker.Date);   
+            if(await viewModel.addAnnounce(announce))
+            {
+                await DisplayAlert("", "Announce added", "Ok");
+            }
+            else
+            {
+                await DisplayAlert("Whoops", "Something went wrong", "Ok");
+            }                      
         }
 
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,16 +46,33 @@ namespace App1.Pages
 
             string previous = (e.PreviousSelection.FirstOrDefault() as Announce)?.location;
             await DisplayAlert("selection changed",previous,"fajnie");
+            Announce selection = (e.CurrentSelection.FirstOrDefault() as Announce);
+            //await DisplayAlert("selection changed", selection.UserId, selection.description);
+            viewModel.SelectedAnnounce = selection;
+            await Navigation.PushAsync(new DetailsPage(selection, viewModel) { BindingContext = selection as Announce });
         }
 
         private async void filter_button_Clicked(object sender, EventArgs e)
         {
-            await viewModel.filterAnnounces(location_filter.Text);
+            if(string.IsNullOrEmpty(location_filter.Text))
+            {
+                viewModel.getAnnounces();
+            }
+            else
+            {
+                await viewModel.filterAnnounces(location_filter.Text,sport_filter.Text,date_picker.Date);
+            }
+            
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AnnouncesPage());
+        }
+
+        private async void SettingsButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AccountDetailsPage());
         }
     }
 }

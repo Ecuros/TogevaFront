@@ -26,7 +26,8 @@ namespace App1.Pages
         {
             Announce selection = (e.CurrentSelection.FirstOrDefault() as Announce) ;
             await DisplayAlert("selection changed", selection.UserId, selection.description);
-           
+            viewModel.SelectedAnnounce = selection;
+            await Navigation.PushAsync(new DetailsPage (selection, viewModel,true){ BindingContext = selection as Announce });                      
         }
     }
 }

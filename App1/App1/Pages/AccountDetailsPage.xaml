@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Pages.AccountDetailsPage"
+             x:Name="page">
+
+    <StackLayout VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="CenterAndExpand">
+        <Label Text="{Binding User.firstName}"
+               HorizontalOptions="CenterAndExpand"/>
+        <Label Text="Edit password"/>
+        <Label Text="New password"/>
+        <Entry x:Name="newPassword" IsPassword="True"/>
+        <Label Text="Confirm new password"/>
+        <Entry x:Name="newPasswordConf" IsPassword="True"/>
+        <Label Text="Old password"/>
+        <Entry x:Name="oldPassword" IsPassword="True"/>
+        <Button x:Name="confirmButton"
+                Clicked="confirmButton_Clicked"/>
+    </StackLayout>
+
+</ContentPage>
