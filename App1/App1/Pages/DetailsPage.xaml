@@ -5,12 +5,18 @@
 
     <StackLayout VerticalOptions="CenterAndExpand" 
                  HorizontalOptions="CenterAndExpand">
-        <Label Text="{Binding description}"/>
-        <Label Text="{Binding location}"/>
-        <Label Text="{Binding date}"/>
+        <Label Text="Details" HorizontalOptions="Center"
+               FontSize="Medium"
+               Margin="0,0,0,40"/>
+        
+        <Label Text="{Binding description}"
+               HorizontalOptions="Center"/>
+        <Label Text="{Binding location}"
+               HorizontalOptions="Center"/>
+        <Label Text="{Binding date}"
+               HorizontalOptions="Center"/>
         <Button x:Name="deleteButton" Text="Delete announce"
                 Clicked="Button_ClickedAsync"/>
-        <Button x:Name="editButton" Text="Edit announce"/>
         <Button x:Name="sendMessageButton" Text="Send message"/>
     </StackLayout>
 

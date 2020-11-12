@@ -19,7 +19,7 @@
                    IsPassword="True"
                    WidthRequest="140"/>
             <Button x:Name="login_button"
-                    Text="Login"
+                    Text="Sign in"
                     WidthRequest="150" 
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
@@ -29,7 +29,7 @@
                     Margin="0,0,0,20"
                     Clicked="Login"/>
             <Button x:Name="goToRegister_button"
-                    Text="Register"
+                    Text="Sign up"
                     WidthRequest="180"
                     HorizontalOptions="Center"   
                     VerticalOptions="Center"

@@ -23,8 +23,10 @@ namespace App1.Pages
             announcesPage.BindingContext = viewModel;
             accountPage.BindingContext = viewModel;
             date_picker.MinimumDate = DateTime.Today;
+            this.BarBackgroundColor = Color.FromHex("#ffa500");
            
-            
+
+
         }
 
         private async void AddAnnounce(object sender, EventArgs e)
@@ -44,8 +46,8 @@ namespace App1.Pages
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            string previous = (e.PreviousSelection.FirstOrDefault() as Announce)?.location;
-            await DisplayAlert("selection changed",previous,"fajnie");
+            //string previous = (e.PreviousSelection.FirstOrDefault() as Announce)?.location;
+           // await DisplayAlert("selection changed",previous,"fajnie");
             Announce selection = (e.CurrentSelection.FirstOrDefault() as Announce);
             //await DisplayAlert("selection changed", selection.UserId, selection.description);
             viewModel.SelectedAnnounce = selection;
@@ -54,7 +56,7 @@ namespace App1.Pages
 
         private async void filter_button_Clicked(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(location_filter.Text))
+            if(string.IsNullOrEmpty(location_filter.Text) && string.IsNullOrEmpty(sport_filter.Text))
             {
                 viewModel.getAnnounces();
             }

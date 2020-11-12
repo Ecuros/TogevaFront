@@ -72,7 +72,10 @@
                 <DatePicker x:Name="date_picker"/>
                 <Button Text="Add announce"
                     Clicked="AddAnnounce"
-                    BackgroundColor="Orange"/>
+                    BackgroundColor="Orange"
+                        android:Button.UseDefaultShadow="True"
+                        HorizontalOptions="Center"
+                        WidthRequest="240"/>
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>

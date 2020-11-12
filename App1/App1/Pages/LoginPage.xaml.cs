@@ -20,6 +20,7 @@ namespace App1.Views
         {
             InitializeComponent();
             service = new UsersService();
+            
         }
 
         public async void Login (object sender, EventArgs args)

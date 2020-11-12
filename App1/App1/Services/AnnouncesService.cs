@@ -15,7 +15,6 @@ namespace App1.Services
     
     public class AnnouncesService
     {
-
         public async System.Threading.Tasks.Task<ObservableCollection<Announce>> GetAnnouncesAsync ()
         {
             ObservableCollection<Announce> announces = new ObservableCollection<Announce>();

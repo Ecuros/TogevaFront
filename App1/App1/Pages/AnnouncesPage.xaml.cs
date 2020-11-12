@@ -25,7 +25,7 @@ namespace App1.Pages
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Announce selection = (e.CurrentSelection.FirstOrDefault() as Announce) ;
-            await DisplayAlert("selection changed", selection.UserId, selection.description);
+            //await DisplayAlert("selection changed", selection.UserId, selection.description);
             viewModel.SelectedAnnounce = selection;
             await Navigation.PushAsync(new DetailsPage (selection, viewModel,true){ BindingContext = selection as Announce });                      
         }

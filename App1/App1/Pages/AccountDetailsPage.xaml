@@ -7,7 +7,9 @@
     <StackLayout VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand">
         <Label Text="{Binding User.firstName}"
-               HorizontalOptions="CenterAndExpand"/>
+               HorizontalOptions="CenterAndExpand"
+               Margin="0,0,0,40"
+               FontSize="Large"/>
         <Label Text="Edit password"/>
         <Label Text="New password"/>
         <Entry x:Name="newPassword" IsPassword="True"/>
@@ -16,7 +18,10 @@
         <Label Text="Old password"/>
         <Entry x:Name="oldPassword" IsPassword="True"/>
         <Button x:Name="confirmButton"
-                Clicked="confirmButton_Clicked"/>
+                Clicked="confirmButton_Clicked"
+                Text="Confirm"
+                BorderColor="Orange"
+                BorderWidth="1"/>
     </StackLayout>
 
 </ContentPage>

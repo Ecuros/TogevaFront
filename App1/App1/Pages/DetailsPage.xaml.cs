@@ -25,7 +25,7 @@ namespace App1.Pages
             if(!editsPossible)
             {
                 deleteButton.IsVisible = false;
-                editButton.IsVisible = false;
+                //editButton.IsVisible = false;
                 sendMessageButton.IsVisible = true;
             }
             else
@@ -37,7 +37,7 @@ namespace App1.Pages
 
         private async void Button_ClickedAsync(object sender, EventArgs e)
         {
-            var response = await DisplayAlert("Do you really want to delete this announce?", "Do you really want to delete this announce?", "Yes", "No");
+            var response = await DisplayAlert("Are you sure?", "Do you really want to delete this announce?", "Yes", "No");
             if (response)
             {
                 await viewModel.deleteAnnounce(announce);
