@@ -31,8 +31,7 @@ namespace App1.Services
                 var result = JsonConvert.DeserializeObject<ObservableCollection<Announce>>(response.Content.ReadAsStringAsync().Result);
                 announces = result;
                 return announces;
-            }           
-            
+            }                       
         }
 
         internal async Task<ObservableCollection<Announce>> GetFilteredAnnouncesAsync(string location, string sport, DateTime date)
@@ -120,12 +119,10 @@ namespace App1.Services
                 var response = await client.PostAsync(url,data);
                 if (response.IsSuccessStatusCode)
                 {
-                    //announce = await GetAnnouncesAsync();
                     return announce;
                 }
                 else return null;              
             }
-
         }
 
     }

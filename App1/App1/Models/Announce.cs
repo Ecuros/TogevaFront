@@ -14,6 +14,8 @@ namespace App1.Models
         public string description { get; set; }
         public string UserId { get; set; }
         public string sport { get; set; }
+
+        public User User { get; set; }
         public DateTime date { get; set; }
        // public User User { get; set; }
 

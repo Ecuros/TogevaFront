@@ -10,7 +10,10 @@
                HorizontalOptions="CenterAndExpand"
                Margin="0,0,0,40"
                FontSize="Large"/>
-        <Label Text="Edit password"/>
+        <Label Text="Edit password"
+               HorizontalOptions="CenterAndExpand"
+               Margin="0,0,0,40"
+               FontSize="Medium"/>
         <Label Text="New password"/>
         <Entry x:Name="newPassword" IsPassword="True"/>
         <Label Text="Confirm new password"/>

@@ -15,6 +15,7 @@ namespace App1.Models
         public string password { get; set; }
         public string firstName { get; set; }
         public string newPassword { get; set; }
+        public List<Announce> Announces { get; set; }
 
         public User(string email, string password, string Id=null, string newPassword=null,string firstName=null)
         {

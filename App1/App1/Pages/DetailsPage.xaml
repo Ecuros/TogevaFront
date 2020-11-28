@@ -3,21 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1.Pages.DetailsPage">
 
-    <StackLayout VerticalOptions="CenterAndExpand" 
+    <StackLayout
                  HorizontalOptions="CenterAndExpand">
-        <Label Text="Details" HorizontalOptions="Center"
-               FontSize="Medium"
-               Margin="0,0,0,40"/>
-        
-        <Label Text="{Binding description}"
-               HorizontalOptions="Center"/>
-        <Label Text="{Binding location}"
-               HorizontalOptions="Center"/>
-        <Label Text="{Binding date}"
-               HorizontalOptions="Center"/>
+        <Label Text="Announce details" HorizontalOptions="CenterAndExpand"
+               VerticalOptions="Start"
+               FontSize="Large"
+               Margin="0,30,0,100"/>
+        <StackLayout >
+            <Grid RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding User.firstName}"
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="Medium"
+                       Grid.Row="0"
+                      Margin="0,0,0,20" />
+                <Label Text="{Binding description}"
+                         HorizontalOptions="CenterAndExpand"
+                        Grid.Row="1"/>
+                <Label Text="{Binding location}"
+                        HorizontalOptions="CenterAndExpand"
+                        Grid.Row="2"
+                       />
+                <Label Text="{Binding date.Date, StringFormat='{0:MM/dd/yy}'}"
+                        HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Row="3"/>
+            </Grid>
+        </StackLayout>
+
         <Button x:Name="deleteButton" Text="Delete announce"
+                BackgroundColor="Orange"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="150"
                 Clicked="Button_ClickedAsync"/>
-        <Button x:Name="sendMessageButton" Text="Send message"/>
+        <Button x:Name="sendMessageButton" Text="Join"
+                BackgroundColor="Orange"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="150"
+                Clicked="sendMessageButton_ClickedAsync"/>
     </StackLayout>
 
 </ContentPage>
